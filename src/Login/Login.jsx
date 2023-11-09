@@ -1,5 +1,6 @@
 import React from "react";
 import "./Login.css"
+import InputComponent from "../component/InputComponent";
 const Login = () => {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -9,6 +10,7 @@ const Login = () => {
 
     //Bai tap: show loi cho email: co ton tai @ va khong co space, password khong co space va ki tu dat biet va show mat khau
     // sau khi submit thi kiem tra loi va check database gia => co ton tai thi log (success) / khong thi log (false)
+    // input component bao gom label input error co props value, onChange, error
     const onSubmit = (e) => {
         console.log(e,"Event");
         console.log(username, password);
@@ -28,6 +30,7 @@ const Login = () => {
                 <h1 className="text-center font-bold">Login</h1>
                 <div className="justify-center flex">
                     <form className="w-4/5">
+                        <InputComponent value={username} isError={error} errorText={"Error ne"} onChange={(e) => changeUsername(e)} />
                         <label className="block">Username</label>
                         <input value={username} className="input w-full" type="text" placeholder="Type your username" onChange={(event) => {changeUsername(event)}} />
                         {error && <p className="text-error">Loi ne</p>}
